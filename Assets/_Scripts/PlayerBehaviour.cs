@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float jumpForce;
     public float maximumVelocity;
     public bool isGrounded;
+    public Transform spawnpoint;
 
     private Rigidbody2D rigidbody2D;
 
@@ -68,5 +69,15 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         isGrounded = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //respawn
+        if (collision.gameObject.CompareTag("Deathplan"))
+        {
+            transform.position = spawnpoint.position;
+
+        }
     }
 }
